@@ -26,7 +26,8 @@ Stats = soup.find("div", class_="nba-stat-table__overflow")
 Category = []
 for i in soup.find_all("th", hidden=False)[1:]:
     title = i.text
-    Category.append(title)
+    title2 = title.strip()
+    Category.append(title2)
 length = len(Category)
 del Category[length-2:]
 
@@ -52,7 +53,7 @@ for a in Stats.find_all("tr")[1:]:
 ## for data access and calculations
 PlayerData = {}
 for i in range(len(PlayerStats)):
-    PlayerData[PlayerStats[i][0]] = [PlayerStats[i][1]] + list(map(float, PlayerStats[i][2:]))
+    PlayerData[PlayerStats[i][1]] = [PlayerStats[i][4]] + list(map(float, PlayerStats[i][6:]))
 
 ## AP measures a player's off-ball offensive contribution
 ## A negative value indicates lost potential due to turnovers exceeding assists
